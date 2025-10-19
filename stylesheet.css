@@ -13,6 +13,7 @@ html {
 body{
     height: 100%;
     position: relative;
+    overflow: hidden;
 }
 .game {
     display: grid;
@@ -222,17 +223,17 @@ aside .reset p:nth-child(2) {
         .button-container .button:active {
             transform: scale(0.95);
         }
-.error {
+.errorContainer {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 20px;
     top: 1.5em;
-    background: red;
-    color: white;
-    outline: 3px solid rgb(118, 0, 0);
-    border-radius: 8px;
-    padding: 0.5em 1.5em;
-    display: none;
+    display: flex;
+    height: 304px;
+    overflow: hidden;
+    justify-content: flex-start;
+    flex-direction: column;
+    pointer-events: none;
+    
 }
 .pop-up{
     position: absolute;

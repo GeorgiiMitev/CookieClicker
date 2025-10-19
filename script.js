@@ -1,7 +1,7 @@
 ﻿let counter = document.getElementById("cookie-counter");
 let cookie = document.getElementById("cookie");
 let cookiesASecond = document.getElementById("cookies-a-second");
-let error = document.getElementById("error");
+let errorContainer = document.getElementById("errorContainer");
 let multiplierPlaceholder = document.getElementById("multiplier");
 let popup = document.getElementById("pop-up");
 let randomCookieContainer = document.getElementById("random-cookie-container");
@@ -18,12 +18,25 @@ function showPopup() {
 function hidePopup() {
     popup.style = "display: none;"
 }
+function showErrorPopup(message) {
+    let individualError = document.createElement("div");
+    individualError.style = `background: red;color: white;
+                            border-radius: 8px; padding: 0.5em 1em; display: block;
+                            margin-bottom: 1em;`;
+    individualError.innerHTML = message;
+    errorContainer.appendChild(individualError);
 
+    setTimeout(() => {
+        if (errorContainer.contains(individualError)) {
+            errorContainer.removeChild(individualError);
+        }
+    }, 2000);
+}
 function floatingCookie() {
     let randomCookie = document.createElement("img");
 
     randomCookie.style = `animation: floatingCookie 0.8s linear, opacityFade 0.8s linear; animation-fill-mode: forwards;
-                                  width: 30px; height: 30px; position: absolute; z-index: 100;
+                                  width: 32px; height: 32px; position: absolute; z-index: 100;
                                   top: ${Math.random() * 239}px; left:${Math.random() * 251}px; filter: drop-shadow(1px 1px 6px black);
                                   transition: opacity 2s linear; transform: rotate(${Math.random() * 361}deg);`;
 
@@ -31,7 +44,7 @@ function floatingCookie() {
     randomCookieContainer.appendChild(randomCookie);
     setTimeout(() => {
         randomCookieContainer.removeChild(randomCookie);
-    }, 10000);
+    }, 1000);
 }
 
 function cookieClicked() {
@@ -64,17 +77,10 @@ function multiplierButton() {
         multiplier += 0.1;
         counter.innerHTML = cookies.toFixed(0);
         console.log("New multiplier:", multiplier.toFixed(2))
-        multiplierPlaceholder.innerHTML = multiplier.toFixed(1) + " 🍪";
+        multiplierPlaceholder.innerHTML = multiplier.toFixed(1) + "x" + " 🍪";
     }
     else {
-        error.innerHTML = `Not enough 🍪. You need ${1000 - cookies.toFixed(0)} more!`;
-        error.style = "animation: error 0.5s ease-in-out; animation-timeline: forwards; display: block;";
-
-
-        setTimeout(() => {
-            error.style = "display: none";
-        }, 3000);
-
+        showErrorPopup(`Not enough 🍪. You need ${1000 - cookies.toFixed(0)} more!`);
         return
     }
 }
@@ -88,14 +94,7 @@ function addCookies(cookieValue) {
                 cookies -= 100;
             }
             else {
-                error.innerHTML = `Not enough 🍪. You need ${100 - cookies.toFixed(0)} more!`;
-                error.style = "animation: error 0.5s ease-in-out; animation-timeline: forwards; display: block;";
-
-
-                setTimeout(() => {
-                    error.style = "display: none";
-                }, 3000);
-
+                showErrorPopup(`Not enough 🍪. You need ${1000 - cookies.toFixed(0)} more!`);
                 return
             }
             break;
@@ -105,13 +104,7 @@ function addCookies(cookieValue) {
                 cookies -= 500;
             }
             else {
-                error.innerHTML = `Not enough 🍪. You need ${500 - cookies.toFixed(0)} more!`;
-                error.style = "animation: error 0.5s ease-in-out; animation-timeline: forwards; display: block;";
-
-
-                setTimeout(() => {
-                    error.style = "display: none";
-                }, 3000);
+                showErrorPopup(`Not enough 🍪. You need ${1000 - cookies.toFixed(0)} more!`);
                 return
             }
 
@@ -122,13 +115,7 @@ function addCookies(cookieValue) {
                 cookies -= 1000;
             }
             else {
-                error.innerHTML = `Not enough 🍪. You need ${1000 - cookies.toFixed(0)} more!`;
-                error.style = "animation: error 0.5s ease-in-out; animation-timeline: forwards; display: block;";
-
-
-                setTimeout(() => {
-                    error.style = "display: none";
-                }, 3000);
+                showErrorPopup(`Not enough 🍪. You need ${1000 - cookies.toFixed(0)} more!`);
                 return
             }
 
@@ -139,13 +126,7 @@ function addCookies(cookieValue) {
                 cookies -= 2000;
             }
             else {
-                error.innerHTML = `Not enough 🍪. You need ${2000 - cookies.toFixed(0)} more!`;
-                error.style = "animation: error 0.5s ease-in-out; animation-timeline: forwards; display: block;";
-
-
-                setTimeout(() => {
-                    error.style = "display: none";
-                }, 3000);
+                showErrorPopup(`Not enough 🍪. You need ${1000 - cookies.toFixed(0)} more!`);
                 return
             }
 
@@ -156,13 +137,7 @@ function addCookies(cookieValue) {
                 cookies -= 5000;
             }
             else {
-                error.innerHTML = `Not enough 🍪. You need ${5000 - cookies.toFixed(0)} more!`;
-                error.style = "animation: error 0.5s ease-in-out; animation-timeline: forwards; display: block;";
-
-
-                setTimeout(() => {
-                    error.style = "display: none";
-                }, 2000);
+                showErrorPopup(`Not enough 🍪. You need ${1000 - cookies.toFixed(0)} more!`);
                 return
             }
 
@@ -173,13 +148,7 @@ function addCookies(cookieValue) {
                 cookies -= 10000;
             }
             else {
-                error.innerHTML = `Not enough 🍪. You need ${10000 - cookies.toFixed(0)} more!`;
-                error.style = "animation: error 0.5s ease-in-out; animation-timeline: forwards; display: block;";
-
-
-                setTimeout(() => {
-                    error.style = "display: none";
-                }, 3000);
+                showErrorPopup(`Not enough 🍪. You need ${1000 - cookies.toFixed(0)} more!`);
                 return
             }
             break;
