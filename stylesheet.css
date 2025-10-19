@@ -146,6 +146,7 @@ aside .reset p:nth-child(2) {
         cursor: pointer;
         display: block;
         transition: transform 0.3s ease-in-out;
+
     }
         /*  .main-container img:hover {
             transform: scale(1.05);
@@ -157,6 +158,7 @@ aside .reset p:nth-child(2) {
 .cookie-container {
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
     .cookie-container center {
@@ -180,6 +182,18 @@ aside .reset p:nth-child(2) {
 
     .cookie-container div {
         animation: rotation 60s infinite linear;
+    }
+    .cookie-container #random-cookie-window {
+        position: absolute;
+        width: 100%;
+        height: 238px;
+        border-radius: 50%;
+        z-index: 10;
+        top: 65%;
+        transform: translateY(-50%);
+        animation: none;
+        pointer-events: none;
+        
     }
 
 .button-container {
@@ -218,7 +232,7 @@ aside .reset p:nth-child(2) {
     outline: 3px solid rgb(118, 0, 0);
     border-radius: 8px;
     padding: 0.5em 1.5em;
-    opacity: 1;
+    display: none;
 }
 .pop-up{
     position: absolute;
@@ -232,6 +246,7 @@ aside .reset p:nth-child(2) {
     justify-content: center;
     align-items:center;
     z-index: 10;
+    display: none;
 }
 .pop-up .pop-up-card{
     width: 300px;
@@ -261,11 +276,28 @@ aside .reset p:nth-child(2) {
 .confirm {
     background: #00c800;
     color: white;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
 }
 .cancel {
     background: red;
     color: white;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
 }
+.confirm:hover {
+    background-color: #07b907;
+}
+.cancel:hover {
+    background-color: #da0000;
+}
+.confirm:active{
+    transform: scale(0.95);
+}
+.cancel:active {
+    transform: scale(0.95);
+}
+
 
 
 @keyframes rotation {
@@ -286,7 +318,27 @@ aside .reset p:nth-child(2) {
         top: 1.5em;
     }
 }
-
+@keyframes floatingCookie{
+    from{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-65px);
+        opacity: 0;
+    }
+}
+@keyframes opacityFade {
+    0% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
 
 @keyframes bounce {
     from {
@@ -297,6 +349,12 @@ aside .reset p:nth-child(2) {
         transform: scale(0.95);
     }
 }
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+}
+
+
 /*@keyframes bounceback {
     from {
         transform: scale(0.95);

@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close" />
 </head>
 <body>
     <div class="game">
@@ -17,14 +18,18 @@
                     <center><h1>Cookies:</h1> <span id="cookie-counter">0</span></center>
                     <center><h4>per second:</h4> <span style="font-size: 1em; margin-bottom: 3em;" id="cookies-a-second">0.00</span></center>
                     <div style="display: flex; justify-content: center; border-radius: 50%;">
-                        <img draggable="false" id="cookie" onclick="cookieClicked();" src="images/cookie.png" />
+                        <img draggable="false" id="cookie" onclick="cookieClicked(); floatingCookie()" src="images/cookie.png" />
                     </div>
+                    <div id="random-cookie-window">
+                        <div id="random-cookie-container" style="position: relative; animation: none;">
 
+                        </div>
+                    </div>
                 </div>
                 <div class="button-container">
                     <div id="multiplier-button" class="button" onclick="multiplierButton()">
-                        <p class="upgrade-text">Next Upgrade<br /> Multiplier: +0.1X</p>
-                        <p class="upgrade-cost">Click to purchase. <br />Cost: 1000 🍪</p>
+                        <p class="upgrade-text">Click Multiplier<br /> Upgrade: +0.1X</p>
+                        <p class="upgrade-cost">Click to buy. <br />Cost: 1000 🍪</p>
                     </div>
                     <div>
                         <h4 style="display: inline-block;">Per click: </h4>
@@ -69,7 +74,7 @@
                     </div>
                 </div>
                 <div>
-                    <div onclick="showHidePopup()" id="upgrade-button" class="reset button">
+                    <div onclick="showPopup();" id="upgrade-button" class="reset button">
                         <center><p>Reset progress</p></center>
                         <p>Click to confirm</p>
                     </div>
@@ -78,16 +83,20 @@
 
 
         </aside>
-        <div id="pop-up" class="pop-up">
+        <div  id="pop-up" class="pop-up">
             <div class="pop-up-card">
                 <div class="card-header">
                     <h4>Reset Progress</h4>
-                    <div class="close-button" style="padding: 0.35em 0.5em; cursor: pointer;">X</div>
+                    <div onclick="hidePopup();" class="close-button" style="cursor: pointer;">
+                        <span class="material-symbols-outlined">
+                            close
+                        </span>
+                    </div>
                 </div>
-                <div class="card-body">Do you really wish to reset your <u>WHOLE</u> progress?</div>
+                <div class="card-body" style="text-align: center;">Do you really wish to reset your <u>WHOLE</u> progress?</div>
                 <div class="card-footer">
-                    <div class="card-button confirm">Confirm</div>
-                    <div class="card-button cancel">Cancel</div>
+                    <div onclick="hidePopup();" class="card-button confirm">Confirm</div>
+                    <div onclick="hidePopup();" class="card-button cancel">Cancel</div>
                 </div>
             </div>
         </div>
@@ -102,16 +111,34 @@
         let error = document.getElementById("error");
         let multiplierPlaceholder = document.getElementById("multiplier");
         let popup = document.getElementById("pop-up");
+        let randomCookieContainer = document.getElementById("random-cookie-container");
+
+        
+        
         let cookies = 0;
         let multiplier = 1;
         let perSecond = 0;
 
-        function showHidePopup() {
-            if (popup.style.display === "") {
-                popup.style.display = "flex";
-            } else {
-                popup.style.display = "none";
-            }
+        function showPopup() {
+            popup.style = "display: flex;"
+        }
+        function hidePopup() {
+            popup.style = "display: none;"
+        }
+
+        function floatingCookie() {
+            let randomCookie = document.createElement("img");
+
+            randomCookie.style = `animation: floatingCookie 0.8s linear, opacityFade 0.8s linear; animation-fill-mode: forwards;
+                                  width: 30px; height: 30px; position: absolute; z-index: 100;
+                                  top: ${Math.random() * 239}px; left:${Math.random() * 251}px; filter: drop-shadow(1px 1px 6px black);
+                                  transition: opacity 2s linear; transform: rotate(${Math.random() * 361}deg);`;
+
+            randomCookie.src = "images/cookie.png";
+            randomCookieContainer.appendChild(randomCookie);
+            setTimeout(() => {
+                randomCookieContainer.removeChild(randomCookie);
+            }, 10000);
         }
 
         function cookieClicked() {
@@ -125,7 +152,7 @@
             /* cookie.style = "animation: bounceback 0.3s ease;";*/
 
         }
-        multiplierPlaceholder.innerHTML = multiplier.toFixed(1) + " 🍪";
+        multiplierPlaceholder.innerHTML = multiplier.toFixed(1) + "x" + " 🍪";
 
         // set values each second and display information in logs
         setInterval(() => {
