@@ -6,7 +6,9 @@ let multiplierPlaceholder = document.getElementById("multiplier");
 let popup = document.getElementById("pop-up");
 let randomCookieContainer = document.getElementById("random-cookie-container");
 
-
+const thousand = 1000;
+const million = 1000000;
+const billion = 1000000000;
 
 let cookies = 0;
 let multiplier = 1;
@@ -36,7 +38,7 @@ function floatingCookie() {
     let randomCookie = document.createElement("img");
 
     randomCookie.style = `animation: floatingCookie 0.8s linear, opacityFade 0.8s linear; animation-fill-mode: forwards;
-                                  width: 32px; height: 32px; position: absolute; z-index: 100;
+                                  width: 33px; height: 33px; position: absolute; z-index: 100;
                                   top: ${Math.random() * 239}px; left:${Math.random() * 251}px; filter: drop-shadow(1px 1px 6px black);
                                   transition: opacity 2s linear; transform: rotate(${Math.random() * 361}deg);`;
 
@@ -49,7 +51,15 @@ function floatingCookie() {
 
 function cookieClicked() {
     cookies += multiplier;
-    counter.innerHTML = cookies.toFixed(0);
+    if (cookies >= million) {
+        counter.innerHTML = (cookies / million).toFixed(2) + "M";
+    }
+    else if (cookies > thousand) {
+        counter.innerHTML = (cookies / thousand).toFixed(2) + "K";
+    }  
+    else {
+        counter.innerHTML = cookies.toFixed(0);
+    }
     cookie.style = "animation: bounce 0.2s ease-in-out";
 
     setTimeout(() => {
@@ -63,7 +73,15 @@ multiplierPlaceholder.innerHTML = multiplier.toFixed(1) + "x" + " 🍪";
 // set values each second and display information in logs
 setInterval(() => {
     cookies += perSecond;
-    counter.innerHTML = cookies.toFixed(0);
+    if (cookies >= million) {
+        counter.innerHTML = (cookies / million).toFixed(2) + "M";
+    }
+    else if (cookies > thousand) {
+        counter.innerHTML = (cookies / thousand).toFixed(2) + "K";
+    }
+    else {
+        counter.innerHTML = cookies.toFixed(0);
+    }
     cookiesASecond.innerHTML = perSecond.toFixed(2);
     console.log("Current cookies:", cookies.toFixed(2));
     console.log("Per second:", perSecond.toFixed(2));
@@ -75,7 +93,15 @@ function multiplierButton() {
     if (cookies >= 1000) {
         cookies -= 1000;
         multiplier += 0.1;
-        counter.innerHTML = cookies.toFixed(0);
+        if (cookies >= million) {
+            counter.innerHTML = (cookies / million).toFixed(2) + "M";
+        }
+        else if (cookies > thousand) {
+            counter.innerHTML = (cookies / thousand).toFixed(2) + "K";
+        }
+        else {
+            counter.innerHTML = cookies.toFixed(0);
+        }
         console.log("New multiplier:", multiplier.toFixed(2))
         multiplierPlaceholder.innerHTML = multiplier.toFixed(1) + "x" + " 🍪";
     }

@@ -139,7 +139,9 @@ aside .reset p:nth-child(2) {
     color: white;
     display: flex;
     flex-direction: column;
-    gap: 10em;
+    gap: 5em;
+    justify-content: space-around;
+    height: 100%;
 }
 
     .main-container img {
@@ -181,7 +183,7 @@ aside .reset p:nth-child(2) {
         font-weight: bold;
     }
 
-    .cookie-container div {
+    .cookie-container div:nth-child(2) {
         animation: rotation 60s infinite linear;
     }
     .cookie-container #random-cookie-window {
@@ -190,7 +192,7 @@ aside .reset p:nth-child(2) {
         height: 238px;
         border-radius: 50%;
         z-index: 10;
-        top: 65%;
+        top: calc(57px + 200px);
         transform: translateY(-50%);
         animation: none;
         pointer-events: none;

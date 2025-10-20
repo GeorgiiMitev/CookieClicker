@@ -15,8 +15,10 @@
         <div class="container">
             <div class="main-container">
                 <div class="cookie-container">
-                    <center><h1>Cookies:</h1> <span id="cookie-counter">0</span></center>
-                    <center><h4>per second:</h4> <span style="font-size: 1em; margin-bottom: 3em;" id="cookies-a-second">0.00</span></center>
+                    <div class="stats" style="margin-bottom: 5em; animation: none;">
+                        <center><h1>Cookies:</h1> <span id="cookie-counter">0</span></center>
+                        <center><h4>per second:</h4> <span style="font-size: 1em;" id="cookies-a-second">0.00</span></center>
+                    </div>
                     <div style="display: flex; justify-content: center; border-radius: 50%;">
                         <img draggable="false" id="cookie" onclick="cookieClicked(); floatingCookie()" src="images/cookie.png" />
                     </div>
@@ -81,7 +83,7 @@
                 </div>
             </div>
         </aside>
-        <div  id="pop-up" class="pop-up">
+        <div id="pop-up" class="pop-up">
             <div class="pop-up-card">
                 <div class="card-header">
                     <h4>Reset Progress</h4>
