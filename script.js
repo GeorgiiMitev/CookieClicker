@@ -94,7 +94,7 @@ function addCookies(cookieValue) {
                 cookies -= 100;
             }
             else {
-                showErrorPopup(`Not enough 🍪. You need ${1000 - cookies.toFixed(0)} more!`);
+                showErrorPopup(`Not enough 🍪. You need ${100 - cookies.toFixed(0)} more!`);
                 return
             }
             break;
@@ -104,7 +104,7 @@ function addCookies(cookieValue) {
                 cookies -= 500;
             }
             else {
-                showErrorPopup(`Not enough 🍪. You need ${1000 - cookies.toFixed(0)} more!`);
+                showErrorPopup(`Not enough 🍪. You need ${500 - cookies.toFixed(0)} more!`);
                 return
             }
 
@@ -126,7 +126,7 @@ function addCookies(cookieValue) {
                 cookies -= 2000;
             }
             else {
-                showErrorPopup(`Not enough 🍪. You need ${1000 - cookies.toFixed(0)} more!`);
+                showErrorPopup(`Not enough 🍪. You need ${2000 - cookies.toFixed(0)} more!`);
                 return
             }
 
@@ -137,7 +137,7 @@ function addCookies(cookieValue) {
                 cookies -= 5000;
             }
             else {
-                showErrorPopup(`Not enough 🍪. You need ${1000 - cookies.toFixed(0)} more!`);
+                showErrorPopup(`Not enough 🍪. You need ${5000 - cookies.toFixed(0)} more!`);
                 return
             }
 
@@ -148,7 +148,7 @@ function addCookies(cookieValue) {
                 cookies -= 10000;
             }
             else {
-                showErrorPopup(`Not enough 🍪. You need ${1000 - cookies.toFixed(0)} more!`);
+                showErrorPopup(`Not enough 🍪. You need ${10000 - cookies.toFixed(0)} more!`);
                 return
             }
             break;
