@@ -235,6 +235,7 @@ aside .reset p:nth-child(2) {
     justify-content: flex-start;
     flex-direction: column;
     pointer-events: none;
+
     
 }
 .pop-up{
@@ -332,13 +333,10 @@ aside .reset p:nth-child(2) {
     }
 }
 @keyframes opacityFade {
-    0% {
+    from{
         opacity: 1;
     }
-    80% {
-        opacity: 1;
-    }
-    100% {
+    to{
         opacity: 0;
     }
 }

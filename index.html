@@ -20,7 +20,7 @@
                         <center><h4>per second:</h4> <span style="font-size: 1em;" id="cookies-a-second">0.00</span></center>
                     </div>
                     <div style="display: flex; justify-content: center; border-radius: 50%;">
-                        <img draggable="false" id="cookie" onclick="cookieClicked(); floatingCookie()" src="images/cookie.png" />
+                        <img draggable="false" id="cookie" onclick="onCookieClicked(); generateFloatingCookie()" src="images/cookie.png" />
                     </div>
                     <div id="random-cookie-window">
                         <div id="random-cookie-container" style="position: relative; animation: none;">
@@ -95,7 +95,7 @@
                 </div>
                 <div class="card-body" style="text-align: center;">Do you really wish to reset your <u>WHOLE</u> progress?</div>
                 <div class="card-footer">
-                    <div onclick="hidePopup();" class="card-button confirm">Confirm</div>
+                    <div onclick="hidePopup(); resetAllProgress();" class="card-button confirm">Confirm</div>
                     <div onclick="hidePopup();" class="card-button cancel">Cancel</div>
                 </div>
             </div>
