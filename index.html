@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 </head>
 <body>
     <div class="game">
@@ -19,7 +20,7 @@
                         <center><h1>Cookies:</h1> <span id="cookie-counter">0</span></center>
                         <center><h4>per second:</h4> <span style="font-size: 1em;" id="cookies-a-second">0.00</span></center>
                     </div>
-                    <div style="display: flex; justify-content: center; border-radius: 50%;">
+                    <div id="clickable-cookie">
                         <img draggable="false" id="cookie" onclick="onCookieClicked(); generateFloatingCookie()" src="images/cookie.png" />
                     </div>
                     <div id="random-cookie-window">
@@ -39,11 +40,17 @@
                     </div>
                 </div>
             </div>
-            <div class="errorContainer" id="errorContainer"></div>
+            <div class="error-container" id="error-container"></div>
         </div>
-        <aside>
+
+        <aside id="aside">
             <div class="aside-inner-container">
                 <div class="aside-buttons-container">
+                    <div onclick="hideAsideMenu();" id="close-menu" style="cursor: pointer; color: white;">
+                        <span style="font-size: 32px;" class="material-symbols-outlined close-button">
+                            close
+                        </span>
+                    </div>
                     <div onclick="addCookies(1);" id="upgrade-button" class="button">
                         <p class="upgrade-text">Cookies per<br />second upgrade</p>
                         <p class="upgrade">+1</p>
@@ -78,11 +85,15 @@
                 <div>
                     <div onclick="showPopup();" id="upgrade-button" class="reset button">
                         <center><p>Reset progress</p></center>
-                        <p>Click to confirm</p>
                     </div>
                 </div>
             </div>
         </aside>
+        <div class="burger-menu" style="height: 32px;">
+            <span  onclick="showAsideMenu();" id="menu" class="material-symbols-outlined" style="font-size: 32px; color: white;">
+                menu
+            </span>
+        </div>
         <div id="pop-up" class="pop-up">
             <div class="pop-up-card">
                 <div class="card-header">
