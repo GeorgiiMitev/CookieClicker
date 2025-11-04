@@ -8,7 +8,7 @@ let randomCookieContainer = document.getElementById("random-cookie-container");
 
 const thousand = 1000;
 const million = 1000000;
-// const billion = 100,0000000;
+// const billion = 1000000000;
 
 let cookies = 0;
 let multiplier = 1;
@@ -35,7 +35,7 @@ function showErrorPopup(message) {
     }, 1500);
 
     setTimeout(() => {
-            errorContainer.removeChild(individualError);
+        errorContainer.removeChild(individualError);
     }, 2000);
 }
 function generateFloatingCookie() {
@@ -60,7 +60,7 @@ function onCookieClicked() {
     }
     else if (cookies > thousand) {
         counter.innerHTML = (cookies / thousand).toFixed(2) + "K";
-    }  
+    }
     else {
         counter.innerHTML = cookies.toFixed(0);
     }
@@ -89,6 +89,10 @@ setInterval(() => {
     cookiesASecond.innerHTML = perSecond.toFixed(2);
     console.log("Current cookies:", cookies.toFixed(2));
     console.log("Per second:", perSecond.toFixed(2));
+
+    if (perSecond >= 1) {      
+            generateFloatingCookie();   
+    }
 
 }, 1000)
 
