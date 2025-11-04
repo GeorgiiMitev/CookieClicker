@@ -1,10 +1,11 @@
 ﻿let counter = document.getElementById("cookie-counter");
 let cookie = document.getElementById("cookie");
 let cookiesASecond = document.getElementById("cookies-a-second");
-let errorContainer = document.getElementById("errorContainer");
+let errorContainer = document.getElementById("error-container");
 let multiplierPlaceholder = document.getElementById("multiplier");
 let popup = document.getElementById("pop-up");
 let randomCookieContainer = document.getElementById("random-cookie-container");
+let aside = document.getElementById("aside");
 
 const thousand = 1000;
 const million = 1000000;
@@ -19,19 +20,44 @@ function showPopup() {
 }
 function hidePopup() {
     popup.style = "display: none;"
+    aside.classList.remove('visible');
 }
+function showAsideMenu() {
+    aside.classList.add('visible');
+    aside.classList.remove('hidden');
+}
+
+function hideAsideMenu() {
+    aside.classList.add('hidden');
+    aside.classList.remove('visible');
+    
+}
+
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 568) {
+        aside.classList.add('visible');
+        aside.classList.remove('hidden');
+    }
+});
+window.addEventListener('resize', () => {
+    if (window.innerWidth <= 568) {
+        aside.classList.add('hidden');
+        aside.classList.remove('visible');
+    }
+});
+
 function showErrorPopup(message) {
     let individualError = document.createElement("div");
     individualError.style = `background: red;color: white;
                             border-radius: 8px; padding: 0.5em 1em; display: block;
-                            margin-bottom: 1em;`;
+                            margin-bottom: 1em; z-index: 101;`;
     individualError.innerHTML = message;
     errorContainer.appendChild(individualError);
 
     setTimeout(() => {
         individualError.style = `background: red;color: white;
                             border-radius: 8px; padding: 0.5em 1em; display: block;
-                            margin-bottom: 1em; animation: opacityFade 0.5s ease-in-out; animation-fill-mode: forwards;`
+                            margin-bottom: 1em; z-index: 101; animation: opacityFade 0.5s ease-in-out; animation-fill-mode: forwards;`
     }, 1500);
 
     setTimeout(() => {
@@ -43,9 +69,10 @@ function generateFloatingCookie() {
 
     randomCookie.style = `animation: floatingCookie 0.8s linear, opacityFade 0.8s linear; animation-fill-mode: forwards;
                                   width: 33px; height: 33px; position: absolute; z-index: 100;
-                                  top: ${Math.random() * 239}px; left:${Math.random() * 251}px; filter: drop-shadow(1px 1px 6px black);
+                                  top: ${Math.random() * 239}px; left:${(Math.random() * 251)}px; filter: drop-shadow(1px 1px 6px black);
                                   transition: opacity 2s linear; transform: rotate(${Math.random() * 361}deg);`;
 
+    
     randomCookie.src = "images/cookie.png";
     randomCookieContainer.appendChild(randomCookie);
     setTimeout(() => {
@@ -90,7 +117,8 @@ setInterval(() => {
     console.log("Current cookies:", cookies.toFixed(2));
     console.log("Per second:", perSecond.toFixed(2));
 
-    if (perSecond >= 1) {      
+    if (perSecond >= 1) {  
+        if(!document.hidden)
             generateFloatingCookie();   
     }
 
