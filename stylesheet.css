@@ -101,7 +101,7 @@ aside .upgrade-text, #multiplier-button .upgrade-text {
 
 aside .upgrade-cost, #multiplier-button .upgrade-cost {
     position: absolute;
-    bottom: -40px;
+    bottom: -50px;
     transition: all 0.3s ease-in-out;
 }
 
@@ -110,7 +110,7 @@ aside .button:hover .upgrade-text, #multiplier-button:hover .upgrade-text {
 }
 
 aside .button:hover .upgrade-cost, #multiplier-button:hover .upgrade-cost {
-    transform: translateY(-51px);
+    transform: translateY(-60px);
 }
 
 
